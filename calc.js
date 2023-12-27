@@ -15,7 +15,7 @@ let operators = {
 
 buttons_inputs.forEach(button => {
     button.addEventListener('click', display);
-    clean_number.addEventListener('click', clean_Number)
+    clean_number.addEventListener('click', clean_Number);
 })
 
 function display(e){
