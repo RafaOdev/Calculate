@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: rgb(207, 206, 206);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    background: black;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 475px;
+}
+
+.box_response{
+    background: white;
+    position: absolute;
+    text-align: right;
+    flex-direction: column;
+    word-wrap: break-word;
+    font-size: 40px;
+    top: 12px;
+    width: 270px;
+    height: 70px;
+}
+
+.previous_number,
+.current_number{
+    overflow-wrap: break-word;
+}
+
+.previous_number{
+    color: grey;
+    font-size: 18px;
+}
+
+.current_number{
+    position: relative;
+    font-size: 50px;
+}
+
+.button_inputs button{
+    position: relative;
+    cursor: pointer;
+    top: 50px;
+    width: 66px;
+    height: 66px;
+}
+
+.button_inputs button:hover{
+    background-color: rgb(73, 73, 73);
+    color: white;
+}
