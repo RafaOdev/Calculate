@@ -10,7 +10,8 @@ let operators = {
     '+': true,
     '-': true,
     'x': true,
-    '/': true
+    '/': true,
+    '%': true
 };
 
 buttons_inputs.forEach(button => {
@@ -71,7 +72,11 @@ function calculate(){
                     }else{
                         result = parseFloat(previous) / parseFloat(current);
                     }  
-                break;   
+                break;
+            
+            case '%':
+                result = (parseFloat(previous) * parseFloat(current)) / 100
+                break;    
         }
 
         previous_number.innerHTML = '';
