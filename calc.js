@@ -1,86 +1,80 @@
-let previous_number = document.querySelector('.previous_number');
-let current_number = document.querySelector('.current_number');
-let buttons_inputs = document.querySelectorAll('.inputs');
-let clean_number = document.querySelector('.clean');
-
-let text_display = '';
-let current = '';
+let previousNumber = document.querySelector('.previous_number');
+let currentNumber = document.querySelector('.current_number');
+let resultNumber = document.querySelector('.result');
+let equal = document.querySelector('.equal');
+let buttonInputs = document.querySelectorAll('.inputs');
+let clearALL = document.querySelector('.CE');
+let clear = document.querySelector('.C');
+let operators = {'+': true, '-': true, 'x': true, '/': true, '%': true};
 let previous = '';
-let operators = {
-    '+': true,
-    '-': true,
-    'x': true,
-    '/': true,
-    '%': true
-};
+let current = '';
+let previousValue = '';
 
-buttons_inputs.forEach(button => {
+buttonInputs.forEach(button => {
     button.addEventListener('click', display);
-    clean_number.addEventListener('click', clean_Number);
+    equal.addEventListener('click', calculate);
+    clearALL.addEventListener('click', clearAll);
+    clear.addEventListener('click', Clear);
 })
 
 function display(e){
-    text_display = e.target.innerText;
-    current = current_number.innerHTML += text_display;
+    let textDisplay = e.target.innerText;
+    currentNumber.innerHTML += textDisplay
+    current = currentNumber.innerHTML;
+    resultNumber.innerHTML = '';
 
-    if(operators[text_display]){
+    if(operators[textDisplay]){
         previous = current;
-        previous_number.innerHTML = previous.slice(0, -1);
-        current_number.innerHTML = '';
-    }
-
-    if(text_display == '='){
-        calculate();
-    }else if(text_display == 'CE'){
-        clean_screen();
+        previousNumber.innerHTML = previous;
+        currentNumber.innerHTML = '';
     }
 }
 
-function clean_Number(){
+function clearAll(){
+    previous = '';
+    current = '';
+    previousNumber.innerHTML = previous;
+    currentNumber.innerHTML = current;
+}
+
+function Clear(){
     if(current > 0){
         current = current.slice(0, -1);
-        current_number.innerHTML = current;
-        console.log(current);
+        currentNumber.innerHTML = current;
     }
-}
-
-function clean_screen(){
-    previous_number.innerHTML = '';
-    current_number.innerHTML = '';
 }
 
 function calculate(){
-        let operator = previous[previous.length - 1];
-        let result;
-        switch(operator){
-            case '+':
-                result = parseFloat(previous) + parseFloat(current);
-                break;
-               
-            case '-':
-                result = parseFloat(previous) - parseFloat(current);
-                break;
-             
-            case 'x':
-                result = parseFloat(previous) * parseFloat(current);
-                break;
-                
-            case '/':
-                    if(parseFloat(current) == 0 || parseFloat(previous) == 0){
-                        window.alert('It is not possible to divide by zero');
-                        result = '';
-                    }else{
-                        result = parseFloat(previous) / parseFloat(current);
-                    }  
-                break;
+    let operator = previous[previous.length - 1];
+    let result;
+    switch(operator){
+        case '+':
+            result = parseFloat(previous) + parseFloat(current);
+            break;
+           
+        case '-':
+            result = parseFloat(previous) - parseFloat(current);
+            break;
+         
+        case 'x':
+            result = parseFloat(previous) * parseFloat(current);
+            break;
             
-            case '%':
-                result = (parseFloat(previous) * parseFloat(current)) / 100
-                break;    
-        }
+        case '/':
+                if(parseFloat(current) == 0 || parseFloat(previousValue) == 0){
+                    window.alert('It is not possible to divide by zero');
+                    result = '';
+                }else{
+                    result = parseFloat(previous) / parseFloat(current);
+                }  
+            break;
+        
+        case '%':
+            result = (parseFloat(previous) * parseFloat(current)) / 100
+            break;    
+    }
 
-        previous_number.innerHTML = '';
-        current_number.innerHTML = result;
-
-        console.log(operator);
+    previousNumber.innerHTML = '';
+    currentNumber.innerHTML = '';
+    resultNumber.innerHTML = result;
 }
